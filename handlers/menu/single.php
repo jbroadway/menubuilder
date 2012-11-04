@@ -14,6 +14,7 @@ if (! $menu) {
 	return;
 }
 
-info ($menu);
+$menu['current'] = $page->id;
+echo $tpl->render ('menubuilder/menu/single', $menu);
 
 ?>
