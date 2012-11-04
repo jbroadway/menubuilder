@@ -1,0 +1,25 @@
+<p>
+	<a href="/menubuilder/add">{'Add Menu'}</a>
+</p>
+
+<p>
+<table width="100%">
+	<tr>
+		<th width="80%">{"Menu"}</th>
+		<th width="20%">&nbsp;</th>
+	</tr>
+{% foreach menus as menu %}
+	<tr>
+		<td>{{menu|ucfirst}}</td>
+		<td>
+			<a href="/menubuilder/edit?menu={{menu}}">{'Edit'}</a>
+			|
+			<a	href="/menubuilder/delete"
+				data-menu="{{menu}}"
+				onclick="$.confirm_and_post (this, '{'Are you sure you want to permanently delete this menu?'}')"
+			>{'Delete'}</a>
+		</td>
+	</tr>
+{% end %}
+</table>
+</p>
