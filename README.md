@@ -15,7 +15,7 @@ Here is an example menu:
 ```yaml
 # This file defines a menu structure in your website.
 # For formatting info, visit:
-# http://www.elefantcms.com/wiki/MenuBuilder
+# https://github.com/jbroadway/menubuilder
 
 menu:
   - label: Home
@@ -36,3 +36,15 @@ menu:
   - label: Contact Us
     page: contact-us
 ```
+
+Each menu starts with a top-level `menu:` section.
+
+Each section contains one or more items with the following properties:
+
+* label - The text to display in the link.
+* page - The ID of the page in the site.
+* link - An external link instead of specifying an internal page.
+* class - A CSS class to assign to the item in HTML tags.
+* menu - A list of sub-items.
+
+The label and either page or link are required. The rest is optional.
