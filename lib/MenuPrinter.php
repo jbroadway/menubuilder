@@ -1,0 +1,58 @@
+<?php
+
+/**
+ * Helper functions for printing menus.
+ */
+class MenuPrinter {
+	/**
+	 * Print a sitemap to an HTML list.
+	 */
+	public static function sitemap ($menu) {
+		ob_start ();
+		echo '<ul>';
+		foreach ($menu as $item) {
+			$item['link'] = isset ($item['link']) ? $item['link'] : '/' . $item['page'];
+			printf (
+				'<li><a href="%s">%s</a>',
+				$item['link'],
+				$item['label']
+			);
+			if (isset ($item['menu'])) {
+				echo self::sitemap ($item['menu']);
+			}
+			echo '</li>';
+		}
+		echo '</ul>';
+		return ob_get_clean ();
+	}
+
+	/**
+	 * Print a site menu that opens based on the current page.
+	 */
+	public static function contextual ($menu, $path) {
+		ob_start ();
+		echo '<ul>';
+		foreach ($menu as $item) {
+			$item['link'] = isset ($item['link']) ? $item['link'] : '/' . $item['page'];
+			if ($item === $path[count ($path) - 1]) {
+				printf ('<li class="current"><a href="%s">%s</a>', $item['link'], $item['label']);
+				if (isset ($item['menu'])) {
+					echo self::contextual ($item['menu'], $path);
+				}
+				echo '</li>';
+			} elseif (in_array ($item, $path)) {
+				printf ('<li class="parent"><a href="%s">%s</a>', $item['link'], $item['label']);
+				if (isset ($item['menu'])) {
+					echo self::contextual ($item['menu'], $path);
+				}
+				echo '</li>';
+			} else {
+				printf ('<li><a href="%s">%s</a></li>', $item['link'], $item['label']);
+			}
+		}
+		echo '</ul>';
+		return ob_get_clean ();
+	}
+}
+
+?>
