@@ -53,3 +53,24 @@ Each section contains one or more items with the following properties:
 * menu - A list of sub-items.
 
 The label and either page or link are required. The rest is optional.
+
+## Integration
+
+You can integrate menus into your site in one of two ways:
+
+1. In the WYSIWYG editor's Dynamic Objects dialog, you'll see a number
+of new objects like `Menu: Breadcrumb` and `Menu: Contextual`. These will
+embed different kinds of menus into your page.
+
+2. In your layout templates, you can include a menu directly with the
+following tags:
+
+    {! menubuilder/menu/breadcrumb?menu=Main !}
+    
+    {! menubuilder/menu/contextual?menu=Main !}
+    
+    {! menubuilder/menu/dropmenu?menu=Main !}
+    
+    {! menubuilder/menu/single?menu=Main !}
+    
+    {! menubuilder/menu/sitemap?menu=Main !}
