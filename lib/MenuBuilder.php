@@ -48,6 +48,41 @@ class MenuBuilder {
 	}
 
 	/**
+	 * Find a path within a menu. Matches the provided
+	 * page value or the link value against
+	 * `$_SERVER['REQUEST_URI']`.
+	 */
+	public static function find_path ($menu, $page) {
+		if (! is_array ($menu)) {
+			$menu = self::get_menu ($menu);
+			if (! $menu) {
+				return false;
+			}
+			$menu = $menu['menu'];
+		}
+
+		foreach ($menu as $item) {
+			if (
+				(isset ($item['page']) && $item['page'] === $page)
+			||
+				(isset ($item['link']) && $item['link'] === $_SERVER['REQUEST_URI'])
+			) {
+				return array ($item);
+			}
+			
+			if (isset ($item['menu'])) {
+				$res = self::find_path ($item['menu'], $page);
+				if ($res) {
+					array_unshift ($res, $item);
+					return $res;
+				}
+			}
+		}
+
+		return false;
+	}
+
+	/**
 	 * Fetch a menu file's raw contents.
 	 */
 	public static function get_raw_menu ($menu) {

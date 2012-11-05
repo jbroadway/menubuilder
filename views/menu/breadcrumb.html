@@ -1,0 +1,11 @@
+<ul class="breadcrumb">
+{% foreach path as page %}
+	<li
+	{% if page['class'] %}
+		class="{{page['class']}}{% if page['page'] === $data->current %} current{% end %}"
+	{% else %}
+		{% if page['page'] === $data->current %}class="current"{% end %}
+	{% end %}
+	><a {% if page['link'] %}href="{{page['link']}}"{% else %}href="/{{page['page']}}"{% end %}>{{page['label']}}</a></li>
+{% end %}
+</ul>
