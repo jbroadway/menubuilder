@@ -54,6 +54,8 @@ Each section contains one or more items with the following properties:
 
 The label and either page or link are required. The rest is optional.
 
+Menu files are saved in the `conf/menubuilder` folder as `.yml` files.
+
 ## Integration
 
 You can integrate menus into your site in one of two ways:
