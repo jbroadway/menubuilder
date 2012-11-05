@@ -1,12 +1,17 @@
-# MenuBuilder
+# Menu Builder
 
 A menu builder for the [Elefant CMS](http://www.elefantcms.com/)
 based on using [YAML](http://www.yaml.org/) formatting to define
 as many custom menus as you want.
 
-MenuBuilder then provides a set of dynamic menu objects for
+Menu Builder then provides a set of dynamic menu objects for
 embedding your menus into your website through the WYSIWYG
 editor's Dynamic Objects dialog.
+
+Menu Builder works as an alternative to Elefant's built-in
+single-tree navigation app. Editing menus as YAML files may
+not be for everyone, but the added flexibility will hopefully
+be useful to some.
 
 ## Formatting
 
