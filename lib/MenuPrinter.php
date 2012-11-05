@@ -53,6 +53,29 @@ class MenuPrinter {
 		echo '</ul>';
 		return ob_get_clean ();
 	}
+	
+	/**
+	 * Print a site menu structure for dropmenus.
+	 */
+	public static function dropmenu ($menu, $id) {
+		ob_start ();
+		if ($id) {
+			echo '<ul id="' . $id . '" class="dropmenu">';
+		} else {
+			echo '<ul class="dropmenu">';
+		}
+	
+		foreach ($menu as $item) {
+			$item['link'] = isset ($item['link']) ? $item['link'] : '/' . $item['page'];
+			printf ('<li><a href="%s">%s</a>', $item['link'], $item['label']);
+			if (isset ($item['menu'])) {
+				echo self::dropmenu ($item['menu'], $id);
+			}
+			echo '</li>';
+		}
+		echo '</ul>';
+		return ob_get_clean ();
+	}
 }
 
 ?>
