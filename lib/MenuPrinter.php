@@ -30,6 +30,9 @@ class MenuPrinter {
 	 * Print a site menu that opens based on the current page.
 	 */
 	public static function contextual ($menu, $path) {
+		foreach ($path as $k => $p) {
+			$path[$k]['link'] = isset ($p['link']) ? $p['link'] : '/' . $p['page'];
+		}
 		ob_start ();
 		echo '<ul>';
 		foreach ($menu as $item) {
