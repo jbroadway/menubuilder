@@ -5,6 +5,8 @@ $this->require_admin ();
 if (! MenuBuilder::delete ($_POST['menu'])) {
 	$this->add_notification (__ ('Error deleting menu. Check your permissions and try again.'));
 } else {
+	$cache->delete ('_c_menubuilder_sitemap');
+	$cache->delete ('_c_menubuilder_dropmenu');
 	$this->add_notification (__ ('Menu deleted.'));
 }
 
