@@ -8,19 +8,23 @@ if (! isset ($data['menu'])) {
 	return;
 }
 
-$menu = MenuBuilder::get_menu ($data['menu']);
+$out = $cache->get ('menubuilder_dropmenu_' . $data['menu']);
+if (! $out) {
+	$menu = MenuBuilder::get_menu ($data['menu']);
 
-if (! $menu) {
-	return;
+	if (! $menu) {
+		return;
+	}
+
+	$data['id'] = isset ($data['id']) ? $data['id'] : 'dropmenu';
+
+	$out = MenuPrinter::dropmenu ($menu['menu'], $data['id']);
+	$cache->set ('menubuilder_dropmenu_' . $data['menu'], $out);
 }
-
-$data['id'] = isset ($data['id']) ? $data['id'] : 'dropmenu';
 
 $page->add_style ('/apps/menubuilder/css/dropmenu.css');
 $page->add_script ('/apps/menubuilder/js/dropmenu.js');
 
-echo MenuPrinter::dropmenu ($menu['menu'], $data['id']);
-
-$this->cache = true;
+echo $out;
 
 ?>

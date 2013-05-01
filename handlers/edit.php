@@ -23,8 +23,8 @@ echo $form->handle (function ($form) use ($cache) {
 	if (! MenuBuilder::write ($_GET['menu'], $_POST['body'])) {
 		return false;
 	}
-	$cache->delete ('_c_menubuilder_menu_sitemap');
-	$cache->delete ('_c_menubuilder_menu_dropmenu');
+	$cache->delete ('menubuilder_sitemap_' . $_GET['menu']);
+	$cache->delete ('menubuilder_dropmenu_' . $_GET['menu']);
 	$form->controller->add_notification (__ ('Menu saved.'));
 	$form->controller->redirect ('/menubuilder/index');
 });
